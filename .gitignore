@@ -1,2 +1,10 @@
+# Environnements Python
+.venv/
+venv/
+# Mac
+.DS_Store
+# VS Code
+.vscode/
+# données locale volumineuses à copier depuis le drive
 data/local_data/
 *.ipynb_checkpoints/
