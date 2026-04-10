@@ -90,7 +90,7 @@ pycparser==2.23
 pydantic==2.12.5
 pydantic_core==2.41.5
 pydeck==0.9.1
-Pygments==2.19.2
+Pygments==2.20.0
 pyogrio==0.12.1
 pyparsing==3.2.5
 pyproj==3.7.2
