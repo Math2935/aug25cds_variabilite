@@ -7,7 +7,10 @@ venv/
 .vscode/
 # Checkpoints de notebooks
 *.ipynb_checkpoints/
+<<<<<<< HEAD
 # Cache Python
+=======
+>>>>>>> 19bcb4f (Update collect of production data.)
 __pycache__/
 # données locale volumineuses à copier depuis le drive
 data/local_data/
