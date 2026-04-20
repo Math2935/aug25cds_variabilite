@@ -5,8 +5,9 @@ Projet Data Science d'analyse et de prédiction de la variabilité de la product
 
 ### Environnement python du projet
 
-Après avoir cloné le repo du projet, aller dans 'data' et créer un répertoire 'local_data' :
+1. Après avoir cloné le repo du projet, aller dans 'data' et créer un répertoire 'local_data' :
 
+```js
 aug25cds_variabilite
 |-f README.md
 |-f requirements.txt
@@ -15,21 +16,36 @@ aug25cds_variabilite
 |-d src
 |-d data
    |-d local_data
+```
 
-Dans ce répertoire, on va créer l'environnement du projet. Par exemple 'variabilite_env' :
-    python3.10 -m venv variabilite_env
+2. Dans ce répertoire, on va créer l'environnement du projet. Par exemple 'variabilite_env' :
 
-Activer l'environnement :
-    source variabilite_env/bin/activate
+```js
+python3.10 -m venv variabilite_env
+```
 
-Revenir à la racine du projet :
-    cd ../..
+3. Activer l'environnement :
 
-Installer les biliothèques requises par le projet :
-    pip install -r requirements.txt
+```js
+source variabilite_env/bin/activate
+```
 
-Lier l'environnement python activé à Jupyter notebook :
-    python3 -m ipykernel install --user --name=variabilite_env
+4. Revenir à la racine du projet :
+```js
+cd ../..
+```
+
+5. Installer les biliothèques requises par le projet :
+
+```js
+pip install -r requirements.txt
+```
+
+6. Lier l'environnement python activé à Jupyter notebook :
+
+```js
+python3 -m ipykernel install --user --name=variabilite_env
+```
 
 ### Données à télécharger préalablement
 
