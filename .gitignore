@@ -5,6 +5,9 @@ venv/
 .DS_Store
 # VS Code
 .vscode/
+# Checkpoints de notebooks
+*.ipynb_checkpoints/
+# Cache Python
+__pycache__/
 # données locale volumineuses à copier depuis le drive
 data/local_data/
-*.ipynb_checkpoints/
