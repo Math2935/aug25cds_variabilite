@@ -72,12 +72,17 @@ Comme leur nom le suggère :
  - le répertoire 'temp' contiendra les fichiers temporaires créés par les notebooks ;
  - le répertoire 'output' contiendra les résultats finaux des notebooks.
  
-Dans le répertoire 'input', on placera les archives au format zip d'éCO2Mix telles qu'on peut les trouver sur le site de RTE (pour notre projet nous avons pris les données régionnales de la région PACA de 2013 à 2024 ainsi que l'archive de 2025 consolidée ('En-cours-Consolide')).
+Dans le répertoire 'input', on placera :
 
-On placera également les 3 fichiers 'communes_PACA_INSEE.csv', 'registre_pv_paca_raw.csv' et 'region_paca.geojson' tels qu'on les retrouve sur le drive du projet.
+1. les archives au format zip d'éCO2Mix telles qu'on peut les trouver sur le site de RTE (pour notre projet nous avons pris les données régionnales de la région PACA de 2013 à 2024 ainsi que l'archive de 2025 consolidée ('En-cours-Consolide')).
 
-Enfin on place également un fichier 'cams_access' qui est un fichier texte dont la première ligne correspond à la clé d'accès à l'API CAMS.
+2. On placera également les 3 fichiers 'communes_PACA_INSEE.csv', 'registre_pv_paca_raw.csv' et 'region_paca.geojson' tels qu'on les retrouve sur le drive du projet.
 
+3. Enfin on place également un fichier 'cams_access' qui est un fichier texte dont la première ligne correspond à la clé d'accès à l'API CAMS.
+
+Contenu attendu du répertoire input :
+
+```js
 input :
    cams_access
    communes_PACA_INSEE.csv
@@ -97,3 +102,4 @@ input :
    eCO2mix_RTE_PACA_En-cours-TR.zip (utile si on veut faire tourner sur l'année 2026 en cours)
    region_paca.geojson
    registre_pv_paca_raw.csv
+```
