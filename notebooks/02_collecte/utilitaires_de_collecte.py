@@ -27,33 +27,3 @@ def normalize_columns_name(df) :
 
     # Normaliser le nom des colonnes
     return df.rename(columns=dico)
-
-def update_database(df_new, df_old):
-    # Liste des variables d'éCO2mix retenues dans l'ancien dataset
-    variables_retenues = [
-        'Date', 'Heures', 'Consommation',
-        'Solaire', 'TCO Solaire (%)', 'TCH Solaire (%)']
-
-    # Vérification de la présence de ces variables dans le nouveau dataset
-    toutes_presentes = True
-    for var in variables_retenues :
-        if var not in df_new.columns :
-            toutes_presentes = False
-
-    if toutes_presentes :
-        print("Les variables précédemment retenues sont toutes présentes dans le nouveau dataset.")
-    else :
-        return 'Variable(s) manquante(s) dans le nouveau dataset.'
-
-    # Les variables étant toutes présentes, on peut procéder à leur extraction
-    df = df_new[variables_retenues].copy()
-
-    # On supprime les lignes où la variable TCH Solaire est manquante
-    df = df.dropna(subset=['TCH Solaire (%)'])
-
-    if df.isna().sum().sum() != 0 :
-        return 'Impossible de gérer les valeurs manquantes.'
-
-
-
-
