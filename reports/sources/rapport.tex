@@ -1,0 +1,248 @@
+% Document basé sur :
+% BlaBLaTeX – Free Lab / Project Report Template
+% https://www.blablatex.com
+% Free to download, adapt and redistribute.
+
+\documentclass[10pt,a4paper]{report}
+
+%------------------------------------------------
+% Encoding & language
+%------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+%------------------------------------------------
+% Page layout
+%------------------------------------------------
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  margin=2.4cm
+}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage[parfill]{parskip}
+
+\usepackage{lipsum}
+\usepackage{titlesec}
+\titlespacing{\chapter}
+{0pt}{0.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+% Fix fancyhdr warning about headheight
+\setlength{\headheight}{15pt}
+
+%------------------------------------------------
+% Fonts and math (Palatino-like)
+%------------------------------------------------
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newpxtext,newpxmath}
+
+%------------------------------------------------
+% Colors, graphics, plots, tables
+%------------------------------------------------
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\sisetup{
+  detect-all,
+  table-number-alignment = center
+}
+
+% Color palette
+\definecolor{DarkBlue}{HTML}{1f4e79}   % deep blue 1D1D5E
+\definecolor{MediumBlue}{HTML}{2f75b5} % medium blue 1A1AD5
+\definecolor{LightBlue}{HTML}{E3F2FD}   % very light blue
+\definecolor{DarkText}{HTML}{102027}   % dark text gray
+\definecolor{LightText}{HTML}{5a5a5a}   % light text gray 808080
+
+\color{DarkText}
+
+%------------------------------------------------
+% Hyperlinks & clever references
+%------------------------------------------------
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+% Tell cleveref how to name listings
+\crefname{lstlisting}{listing}{listings}
+\Crefname{lstlisting}{Listing}{Listings}
+
+%------------------------------------------------
+% Theorem-like environments
+%------------------------------------------------
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%------------------------------------------------
+% Code listings
+%------------------------------------------------
+\usepackage{listings}
+\lstdefinestyle{blablaListing}{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=8pt,
+  backgroundcolor=\color{LightBlue!30},
+  frame=single,
+  rulecolor=\color{LightBlue!80},
+  keywordstyle=\color{DarkBlue}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{MediumBlue},
+  tabsize=2,
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false
+}
+\lstset{style=blablaListing}
+
+%------------------------------------------------
+% Simple keywords environment
+%------------------------------------------------
+\newenvironment{keywords}{
+  \par\vspace{0.5\baselineskip}\noindent
+  \textbf{Keywords:}
+}{\par\vspace{0.5\baselineskip}}
+
+%------------------------------------------------
+% Metadata commands
+%------------------------------------------------
+% Métadonnées
+\newcommand{\reporttype}{Rapport technique}
+\newcommand{\reporttitle}{Analyse et prédiction de la variabilité de la production solaire à partir de données ouvertes de la région PACA}
+\newcommand{\reportsubtitle}{Prédiction à court terme de la variabilité de la production solaire photovoltaïque}
+\newcommand{\reportpromo}{Promotion Data Scientist (AUG-2025)}
+\newcommand{\reportauthorMI}{Moustafa IBRAHIM}
+\newcommand{\reportauthorCC}{Christophe CRESTEY}
+\newcommand{\reportauthorMB}{Mathilde BLANCHARD}
+\newcommand{\reportlogo}{img/logo_liora.jpg}
+
+% Footer signature (used in every page footer)
+\newcommand{\footerrapport}{\small Analyse et prédiction de la variabilité photovoltaïque — Region PACA}
+
+%------------------------------------------------
+% Section titles
+%------------------------------------------------
+\usepackage{titlesec}
+
+\titleformat{\chapter}[hang]
+  {\normalfont\Huge\bfseries\color{DarkBlue}}
+  {\thechapter.}{0.8em}{}
+
+\titleformat{\section}[hang]
+  {\normalfont\Large\bfseries\color{MediumBlue}}
+  {\thesection}{0.8em}{}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\large\bfseries\color{LightBlue}}
+  {\thesubsection}{0.8em}{}
+
+\titleformat{\subsubsection}[hang]
+  {\normalfont\bfseries\color{DarkText}}
+  {\thesubsubsection}{0.8em}{}
+
+\titleformat{\caption}[hang]
+  {\normalfont\itshape\color{LightText}}
+  {\thecaption}{0.8em}{}
+
+%------------------------------------------------
+% Headers and footers
+%------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\nouppercase{\rightmark}}
+\fancyfoot[L]{\footerrapport}
+\fancyfoot[R]{\thepage}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[L]{\footerrapport}
+  \fancyfoot[R]{\thepage}
+}
+
+%------------------------------------------------
+% Document
+%------------------------------------------------
+\begin{document}
+\selectlanguage{french}
+
+%---------------- Title page ----------------
+
+
+\begin{titlepage}
+    \centering
+
+    % Logo
+    \vspace*{0.5cm}
+    \includegraphics[height=5cm]{\reportlogo}\par
+
+    \vspace{3cm}
+
+    % Title
+    {\Large\bfseries\color{LightText}\reporttype\par}
+    \vspace{0.4cm}
+    {\LARGE\bfseries\color{DarkBlue}\reporttitle\par}
+    \vspace{0.4cm}
+    {\large\color{LightText}\reportsubtitle\par}
+
+    \vspace{3cm}
+    {\large\bfseries\color{LightText}\reportpromo\par}
+    \vspace{0.6cm}
+    {\color{LightText}\reportauthorMI\par}
+    \vspace{0.1cm}
+    {\color{LightText}\reportauthorCC\par}
+    \vspace{0.1cm}
+    {\color{LightText}\reportauthorMB\par}
+
+
+\end{titlepage}
+
+\tableofcontents
+
+\include{intro}
+
+\include{cadrage_geographique}
+
+\include{collecte}
+
+\include{analyse_exploratoire}
+
+\include{feature_engineering}
+
+\include{modelisation}
+
+\include{interpretabilite}
+
+\include{resultats}
+
+\include{conclusion}
+
+\listoffigures
+
+\end{document}

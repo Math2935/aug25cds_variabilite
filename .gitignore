@@ -11,3 +11,9 @@ venv/
 __pycache__/
 # données locale volumineuses à copier depuis le drive
 data/local_data/
+# Fichiers latex temporaires
+*.aux
+*.toc
+*.out
+*.lof
+*.log

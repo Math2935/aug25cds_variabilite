@@ -1,0 +1,9 @@
+\chapter{Conclusion générale}
+
+Les parties finales du projet montrent une chaîne méthodologique complète allant de la construction des variables à l'interprétation du modèle final et à l'analyse opérationnelle des événements extrêmes.
+
+Le modèle final retenu, ExtraTreesRegressor, conserve de bonnes performances sur l'ensemble de test, avec une MAE d'environ 0.467, un RMSE d'environ 0.986 et un R² d'environ 0.893. Ces résultats indiquent une bonne capacité de généralisation sur une période future indépendante.
+
+L'interprétabilité confirme la cohérence physique du modèle. Les variables les plus importantes sont liées au CSI, à la variation récente de la production normalisée, aux variations de l'irradiance et au potentiel théorique d'irradiance directe sous ciel clair, en particulier \textit{clear\_sky\_bni}. Les analyses par feature importance, SHAP et permutation importance convergent donc vers la même conclusion : le modèle s'appuie principalement sur des signaux pertinents pour détecter les changements rapides de conditions solaires.
+
+L'analyse des rampes critiques montre que le modèle ne se limite pas à de bonnes performances moyennes en régression. Avec le seuil Q90, les alertes sont plus fiables, avec une précision d'environ 81.9 \%. Avec le seuil optimisé, le modèle détecte davantage d'événements critiques, avec un recall d'environ 85.5 \%, au prix d'un plus grand nombre de fausses alertes.
