@@ -47,6 +47,14 @@ pip install -r requirements.txt
 python3 -m ipykernel install --user --name=variabilite_env
 ```
 
+### Application Streamlit
+
+1. Depuis la racine du projet, après avoir installé les dépendances requises décrites plus haut :
+```
+streamlit run src/app.py
+```
+
+
 ### Données à télécharger préalablement
 
 Pour pouvoir faire tourner les notebooks, il faut préalablement télécharger certains fichiers (trop volumineux pour être re-publiés sur Github).
