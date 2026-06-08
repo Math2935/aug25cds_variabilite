@@ -7,7 +7,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 # Global CSS - clean white style, powerpoint-like
 st.markdown("""
 <style>
@@ -162,8 +161,27 @@ html, body, [data-testid="stAppViewContainer"] {
 
 # ---- Sidebar navigation ----
 with st.sidebar:
+    # Logo Liora
+    from pathlib import Path
+    import base64
+    logo_path = Path(__file__).parent / "images" / "liora.png"
+    if logo_path.exists():
+        with open(logo_path, "rb") as f:
+            logo_b64 = base64.b64encode(f.read()).decode()
+        st.markdown(f"<img src='data:image/png;base64,{logo_b64}' style='width:100%; max-width:140px; margin-bottom:0.5rem;'>", unsafe_allow_html=True)
+
     st.markdown("## ☀️ Variabilité Solaire")
-    st.markdown("**Région PACA — 2020–2025**")
+    st.markdown("**Production PV · Région PACA — 2020–2025**")
+    st.markdown("---")
+    st.markdown("""
+<small style='color:rgba(255,255,255,0.55); font-size:0.72rem; line-height:1.6;'>
+Formation Data Scientist<br>
+Promotion August 2025<br><br>
+Christophe Crestey<br>
+Moustapha Ibrahim<br>
+Mathilde Blanchard
+</small>
+""", unsafe_allow_html=True)
     st.markdown("---")
 
     st.markdown('<span class="nav-label">Navigation</span>', unsafe_allow_html=True)
@@ -171,7 +189,7 @@ with st.sidebar:
         "",
         [
             "1. Accueil",
-            "2. Cadrage géographique",
+            "2. Cadrage de l'étude",
             "3. Collecte de données",
             "4. Analyse exploratoire",
             "5. Feature Engineering",
@@ -179,6 +197,7 @@ with st.sidebar:
             "7. Interprétabilité",
             "8. Rampes Critiques",
             "9. Prédiction en ligne",
+            "10. Conclusion",
         ],
         label_visibility="collapsed"
     )
@@ -192,7 +211,7 @@ with st.sidebar:
 if page == "1. Accueil":
     from page_01_accueil import page_accueil
     page_accueil()
-elif page == "2. Cadrage géographique":
+elif page == "2. Cadrage de l'étude":
     from page_02_cadrage import page_cadrage
     page_cadrage()
 elif page == "3. Collecte de données":
@@ -216,3 +235,6 @@ elif page == "8. Rampes Critiques":
 elif page == "9. Prédiction en ligne":
     from pages_09_predictions import page_prediction
     page_prediction()
+elif page == "10. Conclusion":
+    from page_10_conclusion import page_conclusion
+    page_conclusion()
