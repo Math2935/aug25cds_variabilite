@@ -102,7 +102,27 @@ $$
 
     # ── Tab 2 : Position du solei ──────────────────────────────────────────────
     with tabs[2]:
-        pass
+        callout("""<h3>Source</h3>
+
+- Provenance : <b>PySolar</b>, librairie Python sous licence GPL v3.
+
+- Forme : calcul de nouvelles variables à l'aide de la librairie PySolar et des coordonnées géographique.
+""")
+
+        callout("""<h3>Collecte</h3>
+
+
+""", "warn")
+
+        callout(f"""<h3>Bilan</h3>
+
+<div class='kpi-row'>
+                {kpi("2013–2025", "Années disponibles")}
+                {kpi("2020–2025", "Années retenues", "orange")}
+                {kpi("30 min", "Résolution temporelle", "green")}
+                {kpi("7", "Colonnes finales", "accent")}
+                </div>
+""", "success")
 
 
     # ── Tab 3 : Atmosphère ───────────────────────────────────────────────────
