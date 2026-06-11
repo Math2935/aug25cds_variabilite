@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import seaborn as sns
 import plotly.graph_objects as go
-from utils import load_dataset, load_model, get_xy
+#from utils import load_dataset, load_model, get_xy
 
 from utils import slide_header, section, kpi, formula, callout
 from utils import load_dataset, load_model, check_data_available, check_model_available, get_xy
@@ -615,7 +615,7 @@ La **baseline** prédit que la variabilité future sera proche de la dernière v
     #
     #     st.markdown("#### Résultats finaux sur le jeu de test (2025)")
     #
-    #     test_df = load_dataset("region_test_tot.csv")
+    #     test_df = load_dataset("region_test.csv")
     #     model = load_model("final_model_etr_train_valid.joblib")
     #
     #     X_val, y_val = get_xy(test_df)
@@ -719,7 +719,7 @@ La **baseline** prédit que la variabilité future sera proche de la dernière v
         plt.close()
 
         # Chargement des données et du modèle
-        test_df = load_dataset("region_test_tot.csv")
+        test_df = load_dataset("region_test.csv")
         model = load_model("final_model_etr_train_valid.joblib")
 
         X_test, y_test = get_xy(test_df)

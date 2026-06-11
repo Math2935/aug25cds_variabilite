@@ -27,9 +27,9 @@ def page_interpretabilite():
 
     # Helper to load model & test data
     model = load_model("final_model_etr_train_valid.joblib")
-    test_df = load_dataset("region_test_tot.csv")
-    train_df = load_dataset("region_train_tot.csv")
-    valid_df = load_dataset("region_valid_tot.csv")
+    test_df = load_dataset("region_test.csv")
+    train_df = load_dataset("region_train.csv")
+    valid_df = load_dataset("region_valid.csv")
 
     # ── Tab 0 : Feature Importance ──────────────────────────────────────────
     with tabs[0]:
