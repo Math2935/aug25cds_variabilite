@@ -7,6 +7,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
 # Global CSS - clean white style, powerpoint-like
 st.markdown("""
 <style>
@@ -27,28 +28,28 @@ html, body, [data-testid="stAppViewContainer"] {
 .slide-header {
     background: linear-gradient(135deg, #0f3460 0%, #e94560 100%);
     color: white;
-    padding: 2.5rem 3rem;
+    padding: 1.2rem 2rem;
     border-radius: 16px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     box-shadow: 0 8px 32px rgba(15,52,96,0.18);
 }
-.slide-header h1 { color: white !important; font-size: 2.2rem; margin: 0; font-weight: 700; }
-.slide-header p  { color: rgba(255,255,255,0.85) !important; font-size: 1.05rem; margin-top: 0.5rem; }
+.slide-header h1 { color: white !important; font-size: 1.9rem; margin: 0; font-weight: 700; }
+.slide-header p  { color: rgba(255,255,255,0.85) !important; font-size: 0.95rem; margin-top: 0.2rem; }
 
 .slide-section {
     background: #ffffff;
     border: 1.5px solid #e8ecf4;
     border-radius: 14px;
-    padding: 2rem 2.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.2rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
 .slide-section h2 {
     color: #0f3460 !important;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     border-bottom: 2px solid #e94560;
-    padding-bottom: 0.4rem;
-    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.7rem;
 }
 
 /* ---- KPI cards ---- */
@@ -156,6 +157,62 @@ html, body, [data-testid="stAppViewContainer"] {
     padding: 0.3rem 0;
     display: block;
 }
+
+/* ---- Compact mode for soutenance ---- */
+.slide-section.compact {
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 10px;
+}
+.slide-section.compact h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+.kpi-row {
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+.kpi-card {
+    min-width: 120px;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+}
+.kpi-card .kpi-value { font-size: 1.45rem; }
+.kpi-card .kpi-label { font-size: 0.72rem; }
+.mini-step {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.45rem;
+    padding: 0.45rem 0.65rem;
+    background: #f8f9fd;
+    border-radius: 8px;
+    border-left: 3px solid #0f3460;
+    font-size: 0.84rem;
+}
+.mini-num {
+    font-weight: 800;
+    color: #e94560;
+    min-width: 20px;
+    text-align: center;
+}
+.team-card {
+    margin-bottom: 0.55rem;
+    padding: 0.55rem 0.75rem;
+    border-left: 3px solid #0f3460;
+    background: #f8f9fd;
+    border-radius: 8px;
+}
+.team-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+.team-role {
+    color: #555;
+    font-size: 0.8rem;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
