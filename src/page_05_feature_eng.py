@@ -47,8 +47,6 @@ L'encodage sinusoïdal **préserve la continuité** de ces cycles.
         with col2:
             st.markdown("**Jour de l'année**")
             formula("sin_doy(t) = sin(2π·jour(t)/N_jours)<br>cos_doy(t) = cos(2π·jour(t)/N_jours)")
-
-        st.markdown("---")
         st.markdown("### Visualisation de l'encodage cyclique")
 
         # Generate synthetic illustration
@@ -145,7 +143,7 @@ Un encodage numérique brut introduirait une rupture artificielle en fin de jour
     with tabs[2]:
         st.markdown("### Découpage temporel strict — anti-fuite")
         st.markdown("""
-Le découpage est figé **avant** toute construction de variable dérivée.
+Le découpage est figé **avant** toute construction de variable dérivée.  
 Les modèles de séries temporelles doivent être évalués sur des **périodes futures**.
         """)
 
@@ -186,7 +184,7 @@ Les modèles de séries temporelles doivent être évalués sur des **périodes 
             (2025, 1, '#1abc9c', 'TEST (2025)'),
         ]
         for start, width, color, label in bars:
-            ax.barh(0, width, left=start, height=0.5, color=color, label=label, alpha=0.9)
+            ax.barh(0, width, left=start, height=0.7, color=color, label=label, alpha=0.9)
             ax.text(start + width/2, 0, label, ha='center', va='center',
                     color='white', fontweight='bold', fontsize=9)
         ax.set_xlim(2019.5, 2026.5)
@@ -199,15 +197,15 @@ Les modèles de séries temporelles doivent être évalués sur des **périodes 
         st.pyplot(fig)
         plt.close()
 
-        callout("📌 <strong>Folds de validation croisée temporelle</strong> : 4 folds manuels couvrant 2021→2024 — l'ordre chronologique est toujours respecté.", "info")
-        st.markdown("</div>", unsafe_allow_html=True)
+        # callout("📌 <strong>Folds de validation croisée temporelle</strong> : 4 folds manuels couvrant 2021→2024 — l'ordre chronologique est toujours respecté.", "info")
+        # st.markdown("</div>", unsafe_allow_html=True)
 
     # ── Tab 3 : Lags & Variations ───────────────────────────────────────────
     with tabs[3]:
         callout("⚠️ <strong>Règle anti-fuite</strong> : toutes les variables explicatives utilisent uniquement l'information disponible à l'instant <em>t</em> ou avant.", "warn")
         st.markdown("### Mémoire du système : lags, variations, statistiques glissantes")
         st.markdown("""
-Pour prédire une variation à court terme, il ne suffit pas de connaître l'état instantané.
+Pour prédire une variation à court terme, il ne suffit pas de connaître l'état instantané.  
 Il faut décrire la **dynamique récente** du système.
         """)
 
@@ -228,34 +226,34 @@ Il faut décrire la **dynamique récente** du système.
             formula("var_roll_mean_4    = moyenne glissante<br>var_roll_std_4     = écart-type glissant")
         with col2:
             formula("dvar_roll_mean_4   = moyenne des variations<br>dvar_roll_std_4    = volatilité récente<br>dvar_abs_roll_mean = intensité moyenne")
-
-        st.markdown("---")
-        st.markdown("#### Variables ciblées par ces dérivées")
-
-        vars_list = [
-            ("GHI", "Irradiance globale horizontale — variable d'irradiance principale"),
-            ("CSI", "Clear Sky Index — état atmosphérique normalisé"),
-            ("TCH solaire", "Taux de charge solaire — production normalisée"),
-            ("Ratio TCH/GHI", "Cohérence production/irradiance — indicateur opérationnel"),
-        ]
-        for var, desc in vars_list:
-            st.markdown(f"- **`{var}`** — {desc}")
-
         callout("✅ Toutes ces variables respectent la règle anti-fuite : elles utilisent uniquement des informations disponibles à <em>t</em> ou avant.", "success")
-        st.markdown("</div>", unsafe_allow_html=True)
+
+        # st.markdown("---")
+        # st.markdown("#### Variables ciblées par ces dérivées")
+        #
+        # vars_list = [
+        #     ("GHI", "Irradiance globale horizontale — variable d'irradiance principale"),
+        #     ("CSI", "Clear Sky Index — état atmosphérique normalisé"),
+        #     ("TCH solaire", "Taux de charge solaire — production normalisée"),
+        #     ("Ratio TCH/GHI", "Cohérence production/irradiance — indicateur opérationnel"),
+        # ]
+        # for var, desc in vars_list:
+        #     st.markdown(f"- **`{var}`** — {desc}")
+        #
+        # st.markdown("</div>", unsafe_allow_html=True)
 
         # ── Tab 4 : CSI & Ratio ─────────────────────────────────────────────────
         with tabs[4]:
             st.markdown("### Indicateurs atmosphériques complémentaires")
 
-            tab_a, tab_b = st.tabs(["☁️ Clear Sky Index (CSI)", "📉 Ratio TCH / GHI"])
+            tab_a, tab_b = st.tabs(["Clarté Ciel (CSI)", "Ratio Prod. / Ray."])
 
             with tab_a:
-                st.markdown("#### Clear Sky Index — Mesure de l'atténuation atmosphérique")
+                st.markdown("#### Clarté Ciel — Mesure de l'atténuation atmosphérique")
                 st.markdown("""
     Le **CSI** compare l'irradiance réellement observée à l'irradiance théorique sous ciel clair.
                 """)
-                formula("CSI(t) = GHI(t) / GHI_clear_sky(t)")
+                st.latex(r"\text{CSI}(t) = \dfrac{\text{Irradiance}(t)}{\text{Irradiance ciel clair}(t)}")
 
                 col1, col2, col3 = st.columns(3)
                 col1.markdown("""
@@ -271,27 +269,18 @@ Il faut décrire la **dynamique récente** du système.
     <b>CSI ≈ 0</b><br><small>Très nuageux ou nuit<br>Faible production</small>
     </div>""", unsafe_allow_html=True)
 
-                callout(
-                    "⚠️ Quand GHI_clear_sky < 10 W/m², le CSI est fixé à 0 pour éviter les divisions instables (lever/coucher du soleil, nuit).",
-                    "warn")
 
             with tab_b:
-                st.markdown("#### Ratio TCH/GHI — Cohérence production/irradiance")
+                st.markdown("#### Ratio Production/Irradiance")
                 st.markdown("""
     Ce ratio mesure si la production photovoltaïque observée est cohérente avec l'irradiance disponible.
                 """)
-                formula("Ratio(t) = TCH_solaire(t) / GHI(t)")
-
+                st.latex(r"\text{Ratio}(t) = \dfrac{\text{Production}(t)}{\text{Irradiance}(t)}")
                 st.markdown("""
     **Interprétation :**
-    - Ratio **normal** → production cohérente avec l'irradiance
-    - Ratio **anormalement faible** (GHI fort, TCH faible) → possible curtailment, panne partielle ou limitation réseau
-    - Ce ratio est un **indicateur candidate** — sa pertinence est validée en modélisation
-
-    *Quand GHI < 10 W/m², le ratio est fixé à 0 pour éviter les instabilités numériques.*
+    - Ratio **normal** → production cohérente avec le rayonnement solaire
+    - Ratio **anormalement faible** (Soleil fort, Prod. faible) → possible curtailment, panne partielle ou limitation réseau
                 """)
-
-            st.markdown("</div>", unsafe_allow_html=True)
 
     # ── Tab 5 : Agrégation régionale ────────────────────────────────────────
     with tabs[5]:

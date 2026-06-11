@@ -42,7 +42,7 @@ def page_collecte():
 
         with col1:
             st.markdown("### Variable cible")
-            st.markdown("- Il **n'existe pas** de jeux de données la fournissant directement la `variabilité de la production solaire` :arrow_right: Il faut la **calculer** !")
+            st.markdown("- Il **n'existe pas** de jeux de données la fournissant directement la `variabilité de la production solaire` : il faut la **calculer** !")
             st.markdown("- Parmi les **nombreuses** méthodes de calcul de la **variabilité**, nous faisons le choix d'utiliser la suivante :")
             st.markdown(r"""
 $$
