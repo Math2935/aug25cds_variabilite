@@ -60,13 +60,13 @@ $$
         with col2:
             img_path = Path(__file__).parent / "images" / "evol_solar.png"
             if img_path.exists():
-                st.image(str(img_path), caption="Évolution de la production solaire photovoltaïque en France (source : RTE)")
+                st.image(str(img_path), caption="Évolution de la production solaire photovoltaïque en France (article d'Eloi Lindas, 2025)", width=500)
 
-        st.markdown("### Variables explicatives")
-        st.markdown("Les données de production à elles seules ne suffisent pas à expliquer leurs variations. Nos recherches dans la littérature scientifique nous a donné d'autres pistes de variables complémentaires :")
-        st.markdown("    - la **position du soleil** dans le ciel ;")
-        st.markdown("    - la composition de l'**atmosphère** ; et bien sûr")
-        st.markdown("    - la **météo**.")
+        #st.markdown("### Variables explicatives")
+        #st.markdown("Les données de production à elles seules ne suffisent pas à expliquer leurs variations. Nos recherches dans la littérature scientifique nous a donné d'autres pistes de variables complémentaires :")
+        #st.markdown("    - la **position du soleil** dans le ciel ;")
+        #st.markdown("    - la composition de l'**atmosphère** ; et bien sûr")
+        #st.markdown("    - la **météo**.")
 
 
     # ── Tab 1 : Production énergétique ───────────────────────────────────────────
@@ -121,7 +121,7 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
 
         img_path = Path(__file__).parent / "images" / "reference_frame.png"
         if img_path.exists():
-            st.image(str(img_path), caption="Schéma de l'altitude et de l'azimuth solaire (source PySolar)")
+            st.image(str(img_path), caption="Schéma de l'altitude et de l'azimuth solaire (source PySolar)", width=400)
 
         callout(f"""<h3>Bilan</h3>
 
@@ -155,6 +155,10 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
     - Collecte de la composante globale <b>horizontale</b> du rayonnement solaire + sa valeur par <b>temps clair</b>
     - Collecte de la fiabilité des valeurs précédentes
 """, "warn")
+
+        img_path = Path(__file__).parent / "images" / "radiance.jpg"
+        if img_path.exists():
+            st.image(str(img_path), caption="Schéma des composantes du rayonnement solaire (source Suncom-Energy)", width=400)
 
         callout(f"""<h3>Bilan</h3>
 
@@ -206,6 +210,8 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
     with tabs[5]:
 
         callout(f"""<h3>Bilan</h3>
+
+On aggrège les données par la variable temporelle. On obtient un unique dataset :
 
 <div class='kpi-row'>
                 {kpi("87", "Variables collectées")}
