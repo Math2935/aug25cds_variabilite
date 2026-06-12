@@ -73,9 +73,14 @@ $$
     with tabs[1]:
         callout("""<h3>Source</h3>
 
-- Provenance <b>RTE</b> : jeux de données <b>éCO2Mix</b>, distribué par <i>Ordré</i> Opendata Réseaux-Energies sous licence Ouverte 2.0 (Etalab)
+- <b>Provenance</b> : jeux de données <b>éCO2Mix</b> de <b>RTE</b>, distribué par <i>Ordré</i> Opendata Réseaux-Energies sous licence Ouverte 2.0 (Etalab)
 
-- Forme : **une archive zip par année**, contenant un jeu de données en CSV.
+- <b>Forme</b> : une <b>archive zip</b> par année, contenant un jeu de données en <b>CSV</b>.
+
+- <b>But</b> :
+
+    - Calcul de la <b>variable cible</b>.
+    - Détermination de la <b>plage de dates</b> sur laquelle on va se baser.
 """)
 
         callout("""<h3>Nettoyage</h3>
@@ -91,10 +96,9 @@ $$
         callout(f"""<h3>Bilan</h3>
 
 <div class='kpi-row'>
-                {kpi("2013–2025", "13 années disponibles")}
+                {kpi("7", "Variables collectées")}
                 {kpi("2020–2025", "6 années retenues (106 704 observations)", "orange")}
                 {kpi("30 min", "Résolution temporelle", "green")}
-                {kpi("7", "Variables collectées", "accent")}
                 </div>
 """, "success")
 
@@ -104,14 +108,17 @@ $$
     with tabs[2]:
         callout("""<h3>Source</h3>
 
-- Provenance : <b>PySolar</b>, librairie Python.
+- <b>Provenance</b> : <b>PySolar</b>, librairie Python.
 
-- Forme : calcul de nouvelles variables à l'aide de la librairie PySolar et des coordonnées géographiques.
+- <b>Forme</b> : calcul de nouvelles variables à l'aide de la librairie PySolar et des coordonnées géographiques.
 
-- But : caractériser l'angle entre les rayons solaires et la surface des panneaux solaires.
+- <b>But</b> : caractériser l'<b>angle</b> entre les <b>rayons solaires</b> et la <b>surface des panneaux</b> solaires.
 """)
 
-        callout("""<h3>Collecte</h3>
+        col1, col2 = st.columns(2)
+
+        with col1:
+            callout("""<h3>Collecte</h3>
 
 Pour chaque <b>créneau horaire</b> des données de production collectée :
 - Pour chacune des <b>5 communes</b> identifiées lors du cadrage géographique :
@@ -119,16 +126,18 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
     - Calcul de l'<b>azimuth</b> solaire
 """, "warn")
 
-        img_path = Path(__file__).parent / "images" / "reference_frame.png"
-        if img_path.exists():
-            st.image(str(img_path), caption="Schéma de l'altitude et de l'azimuth solaire (source PySolar)", width=400)
+        with col2:
+            img_path = Path(__file__).parent / "images" / "reference_frame.png"
+            if img_path.exists():
+                st.image(str(img_path), caption="Schéma de l'altitude et de l'azimuth solaire (source PySolar)", width=500)
+
 
         callout(f"""<h3>Bilan</h3>
 
 <div class='kpi-row'>
-                {kpi("30 min", "Résolution temporelle")}
+                {kpi("5 x 2 = 10", "Nouvelles variables")}
                 {kpi("106 704", "Observations", "orange")}
-                {kpi("5 x 2 = 10", "Nouvelles variables", "green")}
+                {kpi("30 min", "Résolution temporelle", "green")}
                 </div>
 """, "success")
 
@@ -137,14 +146,18 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
     with tabs[3]:
         callout("""<h3>Source</h3>
 
-- Provenance : <b>Copernicus</b>, Service d'observation de l'atmosphère Européen.
+- <b>Provenance</b> : <b>Copernicus</b>, Service d'observation de l'atmosphère Européen.
 
-- Forme : collecte de nouvelles variables via une API en ligne.
+- <b>Forme</b> : collecte de nouvelles variables via une <b>API en ligne</b>.
 
-- But : caractériser l'atténuation des rayons solaires due à l'atmosphère avant d'arriver à la surface des panneaux solaires.
+- <b>But</b> : caractériser l'<b>atténuation des rayons solaires</b> due à l'atmosphère avant d'arriver à la surface des panneaux solaires.
 """)
 
-        callout("""<h3>Collecte</h3>
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            callout("""<h3>Collecte</h3>
 
 Pour chaque <b>créneau horaire</b> des données de production collectée :
 - Pour chacune des <b>5 communes</b> identifiées lors du cadrage géographique :
@@ -156,16 +169,18 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
     - Collecte de la fiabilité des valeurs précédentes
 """, "warn")
 
-        img_path = Path(__file__).parent / "images" / "radiance.jpg"
-        if img_path.exists():
-            st.image(str(img_path), caption="Schéma des composantes du rayonnement solaire (source Suncom-Energy)", width=400)
+        with col2:
+            img_path = Path(__file__).parent / "images" / "radiance.jpg"
+            if img_path.exists():
+                st.image(str(img_path), caption="Schéma des composantes du rayonnement solaire (source Suncom-Energy)", width=400)
+
 
         callout(f"""<h3>Bilan</h3>
 
 <div class='kpi-row'>
-                {kpi("15 min -> 30 min", "Modification de résolution temporelle")}
+                {kpi("5 x 10 = 50", "Nouvelles variables")}
                 {kpi("106 704", "Observations", "orange")}
-                {kpi("5 x 10 = 50", "Nouvelles variables", "green")}
+                {kpi("15 min -> 30 min", "Modification de résolution temporelle", "green")}
                 </div>
 """, "success")
 
@@ -174,13 +189,13 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
     with tabs[4]:
         callout("""<h3>Source</h3>
 
-- Provenance : <b>NASA Power Data Access Viewer</b>, Service en ligne de la NASA, permettant l'accès aux données solaires et météorologiques.
+- <b>Provenance</b> : <b>NASA Power Data Access Viewer</b>, Service en ligne de la NASA, permettant l'accès aux données solaires et météorologiques.
 
-- Forme : collecte de nouvelles variables via une API en ligne.
+- <b>Forme</b> : collecte de nouvelles variables via une API en ligne.
 
-- But :
-    - caractériser les obstacles que peuvent rencontrer les rayons solaires avant d'arriver à la surface des panneaux solaires.
-    - caractériser des éléments pouvant influer sur les performances des panneaux solaires.
+- <b>But</b> :
+    - caractériser les <b>obstacles</b> que peuvent rencontrer les rayons solaires avant d'arriver à la surface des panneaux solaires.
+    - caractériser des éléments pouvant influer sur les <b>performances</b> des panneaux solaires.
 """)
 
         callout("""<h3>Collecte</h3>
@@ -199,9 +214,9 @@ Pour chaque <b>créneau horaire</b> des données de production collectée :
         callout(f"""<h3>Bilan</h3>
 
 <div class='kpi-row'>
-                {kpi("1 heure -> 30 min", "Modification de résolution temporelle")}
+                {kpi("5 x 4 = 20", "Nouvelles variables")}
                 {kpi("105 170", "Observations", "orange")}
-                {kpi("5 x 4 = 20", "Nouvelles variables", "green")}
+                {kpi("1 heure -> 30 min", "Modification de résolution temporelle", "green")}
                 </div>
 """, "success")
 
