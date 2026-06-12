@@ -91,10 +91,10 @@ $$
         callout(f"""<h3>Bilan</h3>
 
 <div class='kpi-row'>
-                {kpi("2013–2025", "Années disponibles")}
-                {kpi("2020–2025", "Années retenues", "orange")}
+                {kpi("2013–2025", "13 années disponibles")}
+                {kpi("2020–2025", "6 années retenues (106 704 observations)", "orange")}
                 {kpi("30 min", "Résolution temporelle", "green")}
-                {kpi("7", "Colonnes finales", "accent")}
+                {kpi("7", "Variables collectées", "accent")}
                 </div>
 """, "success")
 
@@ -104,38 +104,118 @@ $$
     with tabs[2]:
         callout("""<h3>Source</h3>
 
-- Provenance : <b>PySolar</b>, librairie Python sous licence GPL v3.
+- Provenance : <b>PySolar</b>, librairie Python.
 
-- Forme : calcul de nouvelles variables à l'aide de la librairie PySolar et des coordonnées géographique.
+- Forme : calcul de nouvelles variables à l'aide de la librairie PySolar et des coordonnées géographiques.
+
+- But : caractériser l'angle entre les rayons solaires et la surface des panneaux solaires.
 """)
 
         callout("""<h3>Collecte</h3>
 
-
+Pour chaque <b>créneau horaire</b> des données de production collectée :
+- Pour chacune des <b>5 communes</b> identifiées lors du cadrage géographique :
+    - Calcul de l'<b>altitude</b> du soleil
+    - Calcul de l'<b>azimuth</b> solaire
 """, "warn")
+
+        img_path = Path(__file__).parent / "images" / "reference_frame.png"
+        if img_path.exists():
+            st.image(str(img_path), caption="Schéma de l'altitude et de l'azimuth solaire (source PySolar)")
 
         callout(f"""<h3>Bilan</h3>
 
 <div class='kpi-row'>
-                {kpi("2013–2025", "Années disponibles")}
-                {kpi("2020–2025", "Années retenues", "orange")}
-                {kpi("30 min", "Résolution temporelle", "green")}
-                {kpi("7", "Colonnes finales", "accent")}
+                {kpi("30 min", "Résolution temporelle")}
+                {kpi("106 704", "Observations", "orange")}
+                {kpi("5 x 2 = 10", "Nouvelles variables", "green")}
                 </div>
 """, "success")
 
 
     # ── Tab 3 : Atmosphère ───────────────────────────────────────────────────
     with tabs[3]:
-        pass
+        callout("""<h3>Source</h3>
+
+- Provenance : <b>Copernicus</b>, Service d'observation de l'atmosphère Européen.
+
+- Forme : collecte de nouvelles variables via une API en ligne.
+
+- But : caractériser l'atténuation des rayons solaires due à l'atmosphère avant d'arriver à la surface des panneaux solaires.
+""")
+
+        callout("""<h3>Collecte</h3>
+
+Pour chaque <b>créneau horaire</b> des données de production collectée :
+- Pour chacune des <b>5 communes</b> identifiées lors du cadrage géographique :
+    - Collecte du rayonnement solaire au <b>sommet de l'atmosphère</b>
+    - Collecte de la composante directe <b>horizontale</b> du rayonnement solaire + sa valeur par <b>temps clair</b>
+    - Collecte de la composante directe <b>normale</b> du rayonnement solaire + sa valeur par <b>temps clair</b>
+    - Collecte de la composante diffuse <b>horizontale</b> du rayonnement solaire + sa valeur par <b>temps clair</b>
+    - Collecte de la composante globale <b>horizontale</b> du rayonnement solaire + sa valeur par <b>temps clair</b>
+    - Collecte de la fiabilité des valeurs précédentes
+""", "warn")
+
+        callout(f"""<h3>Bilan</h3>
+
+<div class='kpi-row'>
+                {kpi("15 min -> 30 min", "Modification de résolution temporelle")}
+                {kpi("106 704", "Observations", "orange")}
+                {kpi("5 x 10 = 50", "Nouvelles variables", "green")}
+                </div>
+""", "success")
 
 
     # ── Tab 4 : Météo ───────────────────────────────────────────────────
     with tabs[4]:
-        pass
+        callout("""<h3>Source</h3>
+
+- Provenance : <b>NASA Power Data Access Viewer</b>, Service en ligne de la NASA, permettant l'accès aux données solaires et météorologiques.
+
+- Forme : collecte de nouvelles variables via une API en ligne.
+
+- But :
+    - caractériser les obstacles que peuvent rencontrer les rayons solaires avant d'arriver à la surface des panneaux solaires.
+    - caractériser des éléments pouvant influer sur les performances des panneaux solaires.
+""")
+
+        callout("""<h3>Collecte</h3>
+
+Pour chaque <b>créneau horaire</b> des données de production collectée :
+
+- Pour chacune des <b>5 communes</b> identifiées lors du cadrage géographique :
+    - Collecte de la <b>nébulosité</b>
+    - Collecte de la <b>température</b>
+    - Collecte de l'<b>humidité</b>
+    - Collecte de la vitesse du <b>vent</b>
+
+- Mise à la retraite du capteur mesurant la nébulosité => suppression donc des données postérieures au 30 décembre 2025.
+""", "warn")
+
+        callout(f"""<h3>Bilan</h3>
+
+<div class='kpi-row'>
+                {kpi("1 heure -> 30 min", "Modification de résolution temporelle")}
+                {kpi("105 170", "Observations", "orange")}
+                {kpi("5 x 4 = 20", "Nouvelles variables", "green")}
+                </div>
+""", "success")
 
 
     # ── Tab 5 : Aggrégation ───────────────────────────────────────────────────
     with tabs[5]:
-        pass
+
+        callout(f"""<h3>Bilan</h3>
+
+<div class='kpi-row'>
+                {kpi("87", "Variables collectées")}
+                {kpi("105 170", "Observations", "orange")}
+                {kpi("30 min", "Résolution temporelle", "green")}
+                {kpi("2020–2025", "6 années", "accent")}
+                </div>
+
+- Un index temporel
+- 6 variables collectées au niveau de la région (données de production)
+- 80 variables collectées au niveau communal
+""", "success")
 
