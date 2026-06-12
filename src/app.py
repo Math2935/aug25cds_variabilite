@@ -252,9 +252,9 @@ Mathilde Blanchard
             "5. Feature Engineering",
             "6. Modélisation",
             "7. Interprétabilité",
-            "8. Rampes Critiques",
-            "9. Prédiction en ligne",
-            "10. Conclusion",
+            "8. Prédiction en ligne",
+            "9. Conclusion",
+            "Annexe - Rampes Critiques",
         ],
         label_visibility="collapsed"
     )
@@ -286,12 +286,12 @@ elif page == "6. Modélisation":
 elif page == "7. Interprétabilité":
     from page_07_interpretabilite import page_interpretabilite
     page_interpretabilite()
-elif page == "8. Rampes Critiques":
-    from pages_08_rampes import page_rampes
-    page_rampes()
-elif page == "9. Prédiction en ligne":
+elif page == "8. Prédiction en ligne":
     from pages_09_predictions import page_prediction
     page_prediction()
-elif page == "10. Conclusion":
+elif page == "9. Conclusion":
     from page_10_conclusion import page_conclusion
     page_conclusion()
+elif page == "Annexe - Rampes Critiques":
+    from pages_08_rampes import page_rampes
+    page_rampes()
