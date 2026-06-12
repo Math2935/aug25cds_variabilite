@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import seaborn as sns
@@ -41,10 +42,10 @@ Contrairement à la feature importance globale, SHAP montre **comment** chaque v
 
         X_test, y_test = get_xy(test_df)
         import shap
-        with st.spinner("Calcul des valeurs SHAP (échantillon 800 observations)..."):
-            X_shap = X_test.sample(n=min(800, len(X_test)), random_state=42)
-            explainer = shap.TreeExplainer(model)
-            shap_values = explainer.shap_values(X_shap)
+        # with st.spinner("Calcul des valeurs SHAP (échantillon 800 observations)..."):
+        #     X_shap = X_test.sample(n=min(800, len(X_test)), random_state=42)
+        #     explainer = shap.TreeExplainer(model)
+        #     shap_values = explainer.shap_values(X_shap)
 
         # fig, ax = plt.subplots(figsize=(9, 7))
         # fig.patch.set_facecolor('white')
@@ -88,29 +89,33 @@ Contrairement à la feature importance globale, SHAP montre **comment** chaque v
             "toa": "Soleil dispo."
         }
 
-        X_shap_display = X_shap.rename(columns=rename_dict)
+        # X_shap_display = X_shap.rename(columns=rename_dict)
+        #
+        # shap.summary_plot(
+        #     shap_values,
+        #     X_shap_display,
+        #     show=False,
+        #     max_display=11,
+        #     plot_size=(6, 4)  # réduit la taille SHAP
+        # )
+        #
+        # fig2 = plt.gcf()
+        # fig2.patch.set_facecolor("white")
+        # fig2.set_size_inches(6, 4)
+        #
+        # # plt.title("SHAP — Beeswarm plot (impact × valeur)", fontweight="bold", fontsize=11)
+        # plt.tight_layout()
+        #
+        # st.pyplot(fig2, width="content")  # ne pas étirer sur toute la page
+        # # ou : st.pyplot(fig2, width=650)
+        #
+        # plt.close(fig2)
 
-        shap.summary_plot(
-            shap_values,
-            X_shap_display,
-            show=False,
-            max_display=11,
-            plot_size=(6, 4)  # réduit la taille SHAP
-        )
+        img_path = Path(__file__).parent / "images" / "graphique_shap.png"
+        if img_path.exists():
+            st.image(str(img_path), width="content")
 
-        fig2 = plt.gcf()
-        fig2.patch.set_facecolor("white")
-        fig2.set_size_inches(6, 4)
-
-        # plt.title("SHAP — Beeswarm plot (impact × valeur)", fontweight="bold", fontsize=11)
-        plt.tight_layout()
-
-        st.pyplot(fig2, width="content")  # ne pas étirer sur toute la page
-        # ou : st.pyplot(fig2, width=650)
-
-        plt.close(fig2)
-
-
+        #st.image("images/graphique_shap.png", width="content")
         st.markdown("#### Résultats SHAP")
         st.markdown("""
         **Variables les plus influente:**
