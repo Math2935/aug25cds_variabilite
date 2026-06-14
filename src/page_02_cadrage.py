@@ -40,50 +40,25 @@ def page_cadrage():
 
         col1, col2 = st.columns(2)
         with col1:
-            refs = [
-                ("#0f3460", "Prévision de production", "domaine mature", None),
-                ("#e8f4fd", "Lindas, Goude & Ciais (2025)", "EDF R&D / CEA — benchmark ML production solaire France", "#0f3460"),
-                ("#e8f4fd", "De Giorgi et al. (2014)", "prévision PV statistique", "#0f3460"),
-                ("#e8f4fd", "IRENA (2020)", "revue des approches avancées ENR", "#0f3460"),
-                (None, None, None, None),  # spacer
-                ("#0f3460", "Volatilité des marchés", "documentée, non anticipée", None),
-                ("#fff3cd", "Kiesel & Paraschiv (2017)", "volatilité prix induite par les ENR", "#7d6608"),
-                ("#fff3cd", "Cramer et al. (2022)", "précision météo et volatilité intraday", "#7d6608"),
-                ("#fff3cd", "ACER (2023)", "volatilité croissante avec la pénétration ENR", "#7d6608"),
-            ]
-            for item in refs:
-                bg, label, desc, color = item
-                if bg is None:
-                    st.markdown("<div style='height:0.4rem'></div>", unsafe_allow_html=True)
-                elif color is None:
-                    st.markdown(f"<p style='font-weight:700; color:#1a1a2e; margin:0.4rem 0 0.2rem 0; font-size:0.9rem;'>{label} <span style='font-weight:400; color:#666;'>— {desc}</span></p>", unsafe_allow_html=True)
-                else:
-                    st.markdown(f"""
-                    <div style="padding:0.2rem 0.6rem; background:{bg}; border-left:2px solid {color};
-                                border-radius:4px; margin-bottom:0.2rem; font-size:0.82rem;">
-                        <span style="font-weight:600; color:{color};">{label}</span>
-                        <span style="color:#555;"> — {desc}</span>
-                    </div>""", unsafe_allow_html=True)
-            callout("Ces travaux <strong>mesurent la volatilité comme un effet</strong> — pas d'outil pour l'anticiper à court terme.", "warn")
+            st.markdown("""
+<p style="font-weight:700; color:#1a1a2e; font-size:0.9rem; margin-bottom:0.4rem;">Prévision de production <span style="font-weight:400; color:#666;">— domaine mature</span></p>
+<div style="padding:0.3rem 0.7rem; background:#e8f4fd; border-left:2px solid #0f3460; border-radius:4px; margin-bottom:0.2rem; font-size:0.82rem;">
+<span style="font-weight:600; color:#0f3460;">Lindas et al. (2025)</span> <span style="color:#555;">— RTE + météo spatiale → benchmark ML · prédit des <strong>niveaux</strong>, pas la variabilité</span></div>
+<div style="padding:0.3rem 0.7rem; background:#e8f4fd; border-left:2px solid #0f3460; border-radius:4px; margin-bottom:0.5rem; font-size:0.82rem;">
+<span style="font-weight:600; color:#0f3460;">De Giorgi (2014) · IRENA (2020)</span> <span style="color:#555;">— prévision PV, approches avancées ENR</span></div>
+
+<p style="font-weight:700; color:#1a1a2e; font-size:0.9rem; margin-bottom:0.4rem;">Volatilité des marchés <span style="font-weight:400; color:#666;">— documentée, non anticipée</span></p>
+<div style="padding:0.3rem 0.7rem; background:#fff3cd; border-left:2px solid #f39c12; border-radius:4px; font-size:0.82rem;">
+<span style="font-weight:600; color:#7d6608;">Kiesel (2017) · Cramer (2022) · ACER (2023)</span> <span style="color:#666;">— volatilité prix et réseau liée aux ENR</span></div>
+            """, unsafe_allow_html=True)
+            callout("Ces travaux <strong>mesurent la volatilité comme un effet</strong> — aucun n'anticipe les rampes à court terme.", "warn")
 
         with col2:
-            st.markdown("**Lindas et al. (2025) — référence clé**")
-            st.markdown("""
-<div style="padding:0.7rem 1rem; background:#e8f4fd; border-left:4px solid #0f3460;
-            border-radius:8px; margin-bottom:0.8rem;">
-<div style="color:#444; font-size:0.88rem;">
-- Même approche : <strong>RTE éCO2mix + météo spatiale</strong> → benchmark ML<br>
-- Prédit des <strong>niveaux</strong> de production, pas la <strong>variabilité</strong><br>
-- Arbres extrapolent mal quand la capacité croît → justifie le <strong>TCH</strong>
-</div>
-</div>
-            """, unsafe_allow_html=True)
-
-            st.markdown("**Ce qui reste absent**")
+            st.markdown("**Ce que ce projet apporte — et que la littérature ne fait pas**")
             manques = [
-                ("Anticipation à 30 min", "Aucun outil de détection des rampes sur données ouvertes"),
-                ("Seuil calibré", "Pas de quantification du niveau critique pour le réseau"),
-                ("Arbitrage recall / précision", "Pas de régime ajustable selon le coût opérationnel"),
+                ("Anticipation à 30 min", "Détection des rampes sur données ouvertes"),
+                ("Seuil calibré sur 5 ans", "Quantification du niveau critique pour le réseau"),
+                ("Seuil ajustable", "Régime adaptable au coût opérationnel de l'alerte"),
             ]
             for titre, desc in manques:
                 st.markdown(f"""
