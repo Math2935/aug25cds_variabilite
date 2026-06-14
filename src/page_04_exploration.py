@@ -145,6 +145,23 @@ Par soucis de simplification on agrège les données communales, au moyen d'une 
 
     # ── Tab 3 : Variable cible ───────────────────────────────────────────────────
     with tabs[3]:
+        callout("<h3>Distribution de la variable cible</h3>")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("""
+- La variable cible varie généralement entre 0 et 6 au cours d'une journée.
+- Présence de valeurs extrêmes.
+- Pas de valeur aberrante (les valeurs les plus extrêmes sont dues à la météo).
+
+""")
+        with col2:
+            img_path = Path(__file__).parent / "images" / "distrib_cible.png"
+            if img_path.exists():
+                st.image(str(img_path), width=500)
+
+
+
         callout("<h3>Aperçu sur une journée</h3>")
 
         col1, col2 = st.columns(2)
@@ -160,7 +177,7 @@ La production est comme on s'y attend plus forte au midi solaire qu'en début et
         with col2:
             img_path = Path(__file__).parent / "images" / "cible_tch_jour.png"
             if img_path.exists():
-                st.image(str(img_path), caption="Cible et Production moyennes sur une journée", width=800)
+                st.image(str(img_path), width=800)
 
 
         callout("<h3>Aperçu sur une année</h3>")
@@ -177,7 +194,7 @@ La production est comme on s'y attend plus forte en été qu'en hiver.
         with col2:
             img_path = Path(__file__).parent / "images" / "cible_tch_mois.png"
             if img_path.exists():
-                st.image(str(img_path), caption="Cible et Production moyennes sur une année", width=800)
+                st.image(str(img_path), width=800)
 
         callout("<h3>Cible en fonction de l'irradiance globale</h3>")
         col1, col2 = st.columns(2)
@@ -195,5 +212,5 @@ Comme on peut s'y atendre, la production de manière régulière avec l'irradian
         with col2:
             img_path = Path(__file__).parent / "images" / "cible_tch_ghi.png"
             if img_path.exists():
-                st.image(str(img_path), caption="Cible et Production en fonction de l'irradiance globale", width=800)
+                st.image(str(img_path), width=800)
 
